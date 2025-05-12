@@ -8,7 +8,12 @@
 * Validate the input XML file against a schema
 * Multiple FSM object can be created and managed simultaneously
 
-## XML file structure
+### State Machine
+Let's create a state machine, which looks like this :
+
+![Simple FSM](ProcessState.jpg)
+
+### XML file structure
 * Please take a look at 'xml/process_state.xml', at the top level everything comes under the 'fsm' tag. Then comes FSM name, list of states, list of actions. 
 ```sh
     <name>process_state</name>  // name of the FSM object
