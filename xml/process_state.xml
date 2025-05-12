@@ -1,0 +1,29 @@
+<fsm>
+  <name>process_state</name>
+  <initstate>NEW</initstate>
+  <states>
+    <state>NEW</state>
+    <state>READY</state>
+    <state>RUNNING</state>
+    <state>WAITING</state>
+    <state>TERMINATED</state>
+  </states>
+  <actions>
+    <action>ADMITTED</action>
+    <action>SCHEDULAR_DISPATCH</action>
+    <action>INTERRUPT</action>
+    <action>IO_WAIT</action>
+    <action>IO_COMPLETION</action>
+    <action>EXIT</action>
+  </actions>
+  <transitions>
+
+      <trans fstate="NEW"               action="ADMITTED"               tstate="READY"/>
+      <trans fstate="READY"              action="SCHEDULAR_DISPATCH"    tstate="RUNNING"/>
+      <trans fstate="RUNNING"            action="EXIT"                  tstate="TERMINATED"/>
+      <trans fstate="RUNNING"            action="INTERRUPT"             tstate="READY"/>
+      <trans fstate="RUNNING"            action="IO_WAIT"               tstate="WAITING"/>
+      <trans fstate="WAITING"            action="IO_COMPLETION"         tstate="READY"/>
+
+   </transitions>
+</fsm>

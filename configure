@@ -1,0 +1,42 @@
+#! /bin/bash
+
+
+dir=build
+gen_dir=generator/$dir
+gen_bin=$gen_dir/fsm_gen
+
+autogen_dir=autogen
+xml_dir=xml
+
+# Generate the fsm-gen-tool
+if [ ! -f $gen_bin ]; then
+  if [ ! -d $gen_dir ]; then
+    mkdir $gen_dir
+  fi
+  
+  cd $gen_dir
+  cmake ..
+
+  make
+  cd -
+fi
+
+#Create autogen directory
+mkdir -p $autogen_dir
+
+# Iterate through all files in the folder
+for xmlfile in $xml_dir/*; do
+  ./$gen_bin $xmlfile
+done
+
+# Build the client application
+if [ ! -d $dir ]; then
+  mkdir $dir
+fi
+
+cd $dir
+cmake ..
+
+make
+
+

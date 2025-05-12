@@ -1,0 +1,25 @@
+<fsm>
+  <name>life_purpose</name>
+  <initstate>SLEEP</initstate>
+  <states>
+    <state>SLEEP</state>
+    <state>EAT</state>
+    <state>CODE</state>
+  </states>
+  <actions>
+    <action>AWAKE</action>
+    <action>HUNGRY</action>
+    <action>TIRED</action>
+    <action>FULL</action>
+  </actions>
+  <transitions>
+
+      <trans fstate="SLEEP"              action="AWAKE"                 tstate="CODE"/>
+      <trans fstate="SLEEP"              action="HUNGRY"                tstate="EAT"/>
+      <trans fstate="CODE"               action="HUNGRY"                tstate="EAT"/>
+      <trans fstate="CODE"               action="TIRED"                 tstate="SLEEP"/>
+      <trans fstate="EAT"                action="TIRED"                 tstate="SLEEP"/>
+      <trans fstate="EAT"                action="FULL"                  tstate="CODE"/>
+
+   </transitions>
+</fsm>

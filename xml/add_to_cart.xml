@@ -1,0 +1,26 @@
+<fsm>
+  <name>add_to_cart</name>
+  <initstate>PRESALE</initstate>
+  <states>
+    <state>PRESALE</state>
+    <state>WISHLIST</state>
+    <state>INCART</state>
+    <state>SOLD</state>
+  </states>
+  <actions>
+    <action>ADD_TO_CART</action>
+    <action>ADD_TO_WISHLIST</action>
+    <action>REMOVE_FROM_CART</action>
+    <action>PAYMENT</action>
+  </actions>
+  <transitions>
+
+      <trans fstate="PRESALE"              action="ADD_TO_CART"                     tstate="INCART"/>
+      <trans fstate="PRESALE"              action="ADD_TO_WISHLIST"                 tstate="WISHLIST"/>
+      <trans fstate="WISHLIST"             action="ADD_TO_CART"                     tstate="INCART"/>
+      <trans fstate="WISHLIST"             action="REMOVE_FROM_CART"                tstate="PRESALE"/>
+      <trans fstate="INCART"               action="REMOVE_FROM_CART"                tstate="PRESALE"/>
+      <trans fstate="INCART"               action="PAYMENT"                         tstate="SOLD"/>
+
+   </transitions>
+</fsm>
